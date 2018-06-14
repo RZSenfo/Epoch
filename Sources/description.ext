@@ -1,2 +1,6 @@
 // Epoch Survival Gamemode
 #include "epoch_config\sandbox_config.hpp"
+
+class MissionSQM {
+    #include "mission.sqm"
+};

@@ -23,8 +23,8 @@ if (_groupID == "") exitWith{ diag_log format["Epoch: GROUP: No Temp Group Selec
 
 diag_log format["Epoch: Temp GROUP: Update %1", _this];
 
-_modOrMember = if (_modOrMemberVar) then [{3},{4}];
-_modOrMemberRevert = if (_modOrMemberVar) then [{4},{3}];
+_modOrMember = [3,4] select !(_modOrMemberVar);
+_modOrMemberRevert = [4,3] select !(_modOrMemberVar);
 _contentArray = [];
 {
 	_contentArray = _x getVariable ["TEMPGROUPARRAY",[]];

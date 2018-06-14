@@ -427,7 +427,7 @@ switch _slot do {
 				{
 					call epoch_geiger_show_hide;
 				};
-				case default
+				default
 				{
 					//do stuff with radios here
 					if (_item in ["EpochRadio0","EpochRadio1","EpochRadio2","EpochRadio3","EpochRadio4","EpochRadio5","EpochRadio6","EpochRadio7","EpochRadio8","EpochRadio9"]) then {_item call EPOCH_custom_radioActions};

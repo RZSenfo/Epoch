@@ -215,7 +215,7 @@ if (EPOCH_debugMode) then {
 		round diag_fps,
 		_hours,
 		round((serverTime/60)-(_hours*60)),
-		if (EPOCH_diag_fps isEqualType 0) then [{EPOCH_diag_fps},{"MANIPULATED"}],
+		[EPOCH_diag_fps,"MANIPULATED"] select !(EPOCH_diag_fps isEqualType 0),
 		missionNamespace getVariable ["EPOCH_totalKarma",0]
 	];
 };

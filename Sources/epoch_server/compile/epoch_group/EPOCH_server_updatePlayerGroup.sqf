@@ -23,8 +23,8 @@ if (_groupID == "") exitWith{ diag_log format["Epoch: GROUP: No Group Selected %
 
 diag_log format["Epoch: GROUP: Update %1", _this];
 
-_modOrMember = if (_modOrMemberVar) then [{3},{4}];
-_modOrMemberRevert = if (_modOrMemberVar) then [{4},{3}];
+_modOrMember = [3,4] select !(_modOrMemberVar);
+_modOrMemberRevert = [4,3] select !(_modOrMemberVar);
 
 _response = ["Group", _groupID] call EPOCH_fnc_server_hiveGETRANGE;
 if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {

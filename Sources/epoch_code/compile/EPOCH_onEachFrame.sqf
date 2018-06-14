@@ -31,14 +31,14 @@ if (!isNull EPOCH_currentTarget && vehicle player == player) then {
 			};
 			case 1: {
 				// _text = if (EPOCH_buildMode > 0) then[{_text}, { format ["Hold (%1)",EPOCH_keysBuildMode1 call BIS_fnc_keyCode] }];
-				_stability = if (EPOCH_buildMode > 0) then[{_currentTarget getVariable["stability", 100]}, {100 - round(damage _currentTarget * 100)}];
+				_stability = [_currentTarget getVariable["stability", 100], 100 - round(damage _currentTarget * 100)] select !(EPOCH_buildMode > 0);
 				_icon = "\x\addons\a3_epoch_code\Data\UI\loading_bar_%1.paa";
 				_color = [100,0,_stability,1] call EPOCH_colorRange;
 			};
 			case 2: {
 				if (alive _currentTarget) then{
 					// TODO move accept trade into dynamic menu
-					_text = format["%1 - %2", if (isStreamFriendlyUIEnabled && isPlayer _currentTarget) then[{"Player"}, { name _currentTarget }],_text];
+					_text = format["%1 - %2", ["Player", name _currentTarget] select !(isStreamFriendlyUIEnabled && isPlayer _currentTarget),_text];
 					_stability = 100 - round(damage _currentTarget * 100);
 					_icon = "\x\addons\a3_epoch_code\Data\UI\loading_bar_%1.paa";
 					_color = [100,0,_stability,1] call EPOCH_colorRange;
@@ -57,8 +57,8 @@ if (!isNull EPOCH_currentTarget && vehicle player == player) then {
 			};
 			case 4: {
 				// Base Objects With Storage
-				_text = if (EPOCH_buildMode > 0) then[{_text}, { format ["Hold (%1) or (%2)",EPOCH_keysAction call BIS_fnc_keyCode, ((actionKeys "Gear" select 0) call BIS_fnc_keyCode),_text] }];
-				_stability = if (EPOCH_buildMode > 0) then[{_currentTarget getVariable["stability", 100]}, {100 - round(damage _currentTarget * 100)}];
+				_text = [_text, format ["Hold (%1) or (%2)",EPOCH_keysAction call BIS_fnc_keyCode, ((actionKeys "Gear" select 0) call BIS_fnc_keyCode),_text]] select !(EPOCH_buildMode > 0);
+				_stability = [_currentTarget getVariable["stability", 100], 100 - round(damage _currentTarget * 100)] select !(EPOCH_buildMode > 0);
 				_icon = "\x\addons\a3_epoch_code\Data\UI\loading_bar_%1.paa";
 				_color = [100,0,_stability,1] call EPOCH_colorRange;
 			};

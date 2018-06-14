@@ -31,8 +31,8 @@ if(_customCol isEqualTo [])then{
 	if !(_bgCol isEqualTypeAll 0)then{_bgCol = [0,0,0,0.2]};
 	if !(_txtCol isEqualTypeAll 0)then{_txtCol = [1,1,1,0.95]};
 }else{
-	_bgCol = if((_customCol select 0)isEqualTypeAll 0) then [{_customCol select 0},{_bgCol = [0,0,0,0.2]}];
-	_txtCol = if((_customCol select 1)isEqualTypeAll 0) then [{_customCol select 1},{_txtCol = [1,1,1,0.95]}];
+	_bgCol = [_customCol select 0,[0,0,0,0.2]] select !((_customCol select 0)isEqualTypeAll 0);
+	_txtCol = [_customCol select 1,[1,1,1,0.95]] select !((_customCol select 1)isEqualTypeAll 0);
 };
 if !(_msg isEqualType "STRING") then { //Needed to remove quotations from strings
 	_msg = str (parseText str _msg); //Parses and converts text back to small string

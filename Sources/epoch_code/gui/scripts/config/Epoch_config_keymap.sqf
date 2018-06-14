@@ -24,8 +24,6 @@ _display = if (_ctrl isEqualType controlNull) then {ctrlParent _ctrl} else {disp
 _input = if (_ctrl isEqualType "STRING") then {_ctrl} else {str _ctrl};
 
 switch (_input) do {
-	default {diag_log format ["[Epoch_config_keymap] Wrong params: %1",_this]};
-
 	case "load":
 	{
 		private ["_ctrl","_arr","_idx"];
@@ -121,6 +119,9 @@ switch (_input) do {
 		_lb = _display displayCtrl 78008;
 		_idx = lbCurSel _lb;
 		_lb lbSetCurSel _idx;
+	};
+	default {
+		diag_log format ["[Epoch_config_keymap] Wrong params: %1",_this];
 	};
 };
 

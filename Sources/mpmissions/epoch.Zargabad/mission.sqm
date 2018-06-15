@@ -53,7 +53,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=205;
+		items=208;
 		class Item0
 		{
 			dataType="Marker";
@@ -6093,6 +6093,42 @@ class Mission
 			{
 			};
 			id=403;
+		};
+		class Item205
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={0.0,100.0,0.0};
+			};
+			name="HC_1";
+			isPlayable=1;
+			id=405;
+			type="HeadlessClient_F";
+		};
+		class Item206
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={0.0,100.0,0.0};
+			};
+			name="HC_2";
+			isPlayable=1;
+			id=406;
+			type="HeadlessClient_F";
+		};
+		class Item207
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={0.0,100.0,0.0};
+			};
+			name="HC_3";
+			isPlayable=1;
+			id=407;
+			type="HeadlessClient_F";
 		};
 	};
 };

@@ -87,7 +87,7 @@ private _getBestPlaces = {
 		[worldSize/2,				worldSize/2 - worldSize/3]  //south
 	];
 	_bp
-}
+};
 
 // load map config
 _config = configFile >> "CfgEpoch";

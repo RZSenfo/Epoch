@@ -79,7 +79,7 @@ if (_allowSave) then{
 		} forEach EPOCH_staticTraderLocations;
 
 		if (_closestDis < 10000) then {
-			_pos = _staticTraderClosest
+			_pos = _staticTraderClosest;
 			_pos set[2, 0];
 		};
 		

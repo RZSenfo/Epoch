@@ -23,6 +23,7 @@ EPOCH_defaultVars_SEPXVar = compileFinal str(EPOCH_defaultVars);
 EPOCH_group_upgrade_lvl_SEPXVar = EPOCH_group_upgrade_lvl;
 EPOCH_staticTraderLocations = [];
 EPOCH_staticNPCTraderPos = [];
+EPOCH_randomSpawnLocations = [];
 EPOCH_traderStoredVehicles = [];
 EPOCH_traderStoredVehiclesCnt = [];
 

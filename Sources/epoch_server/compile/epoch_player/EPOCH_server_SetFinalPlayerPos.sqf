@@ -31,8 +31,14 @@ if !(_finalpos isequaltype []) exitwith {
 if (count _finalpos < 2) exitwith {
 	diag_log "DEBUG: SetFinalPlayerPos failed - count FinalPos < 2";
 };
-_fallbackpos = getmarkerpos "respawn_west";
-_fallbackpos set [2,0];
+
+if (EPOCH_randomSpawnLocations isEqualTo []) then {
+	_fallbackpos = getmarkerpos "respawn_west";
+	_fallbackpos set [2,0];
+} else {
+	_fallbackpos = selectRandom EPOCH_randomSpawnLocations;
+};
+
 _finalpos params [["_location",_fallbackpos],["_dir",0]];
 _newPlyr setDir _dir;
 _newPlyr setPosATL _location;

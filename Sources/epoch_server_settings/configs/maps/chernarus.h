@@ -64,7 +64,9 @@ class Chernarus : Default
 			{ "Land_PhoneBooth_02_F", { 1971.84, 7359.15, -1.52588e-005 }, 127.545 },
 			{ "Land_PhoneBooth_02_F", { 8785.43, 11618.8, 0 }, 100.044 },
 			{ "Land_PhoneBooth_02_F", { 11242.2, 12209.9, 0 }, 118.072 },
-			{ "Land_PhoneBooth_02_F", { 2706.84, 10002.9, 0 }, 12.6221 },
+			{ "Land_PhoneBooth_02_F", { 2706.84, 10002.9, 0 }, 12.6221 }
+	};
+	traderPropsPos[] = {
 			// City Klen
 			{ "Land_MarketShelter_F", { 11396.6, 11368.6, -0.0245056 }, 216.043 },
 			{ "Land_i_Stone_Shed_V1_F", { 11392.3, 11388.6, 0 }, 216.9 },

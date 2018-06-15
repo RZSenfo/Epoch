@@ -175,7 +175,7 @@ class Stratis : Default
 
 			{ "Transport_C_EPOCH", { -0.286865, 8.17383, -10.3098 }, "", { 4089.82, 4597.71, 0.00143433 } }
 	};
-	propsPos[] = {
+	traderPropsPos[] = {
 			{ "Land_Castle_01_wall_08_F", { 1830.55, 3389.67, 0 }, 285.304 },
 			{ "Land_Castle_01_tower_F", { 1852.1, 3361.42, 1.51087 }, 283.624 },
 			{ "Land_Stone_HouseBig_V1_ruins_F", { 1877.76, 2747.02, 0.58992 }, 350.47 },

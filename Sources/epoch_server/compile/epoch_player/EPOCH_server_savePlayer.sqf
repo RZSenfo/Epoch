@@ -68,16 +68,21 @@ if (_allowSave) then{
 
 	if (vehicle _player != _player) then {
 
-		private _staticTraderLocationsDistances = [];
+		private _staticTraderClosest = [0,0,0];
+		private _closestDis = 10000;
 		{
-			_staticTraderLocationsDistances pushBack [_x distance _player, _x]
+			private _dis = _x distance _player;
+			if (_dis < _closestDis) then {
+				_staticTraderClosest = _x;
+				_closestDis = _dis;
+			};
 		} forEach EPOCH_staticTraderLocations;
 
-		if !(_staticTraderLocationsDistances isEqualTo []) then{
-			_staticTraderLocationsDistances sort true;
-			_pos = _staticTraderLocationsDistances select 0 select 1;
+		if (_closestDis < 10000) then {
+			_pos = _staticTraderClosest
 			_pos set[2, 0];
 		};
+		
 	};
 
 	// get players hitpoint damage

@@ -81,7 +81,9 @@ class Esseker : Default
 	    {"Land_wpp_Turbine_V2_F", {1185.73, 7709.4, 0}, 0},
 	    {"Land_wpp_Turbine_V2_F", {1223.07, 7716, 0}, 0},
 	    {"Land_wpp_Turbine_V2_F", {5535.8, 8959.03, 0}, 0},
-	    {"Land_wpp_Turbine_V2_F", {5507.72, 8966.35, 0}, 0},
+	    {"Land_wpp_Turbine_V2_F", {5507.72, 8966.35, 0}, 0}
+	};
+	traderPropsPos[] = {
 	    // Esseker South Trader
 	    {"ClutterCutter_EP1", {8694.08, 3853.14, 0}, 0},
 	    {"ClutterCutter_EP1", {8691.68, 3859.46, 0}, 0},

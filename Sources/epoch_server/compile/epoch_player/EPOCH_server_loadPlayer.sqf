@@ -135,17 +135,26 @@ if (!isNull _player) then {
 			_dir = random 360;
 			// try to find respawn point by position
 			_newLocation = _server_vars param [0,[]]; // 0 = RESPAWN POS
+			
 			// normal respawn location
-			_location = getMarkerPos "respawn_west";
-			_location set[2, 0];
+			if (EPOCH_randomSpawnLocations isEqualTo []) then {
+				_location = getMarkerPos "respawn_west";
+				_location set[2, 0];
+			} else {
+				_location = selectRandom EPOCH_randomSpawnLocations;
+			};
 			if (_newLocation isEqualType [] && {(count _newLocation) == 3}) then {
+				
+				//get the prosition
 				_CheckLocation = _newLocation;
 				if (surfaceiswater _newLocation) then {
 					_CheckLocation = ATLToASL _newLocation;
 				};
+
+				//get nearby jammers && base respawn position
 				_jammers = nearestObjects[_CheckLocation, ["PlotPole_EPOCH"], 6];
 				if !(_jammers isEqualTo[]) then {
-					// get nearby object
+					// get nearest jammer
 					_jammer = _jammers param [0,objNull];
 					// check if object is not null and is alive.
 					if (!isNull _jammer && {alive _jammer}) then {

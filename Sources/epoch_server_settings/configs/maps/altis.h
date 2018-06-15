@@ -36,7 +36,7 @@ class Altis : Default
 			{ "Transport_W_EPOCH", { -14.4316, 0.112793, -10.3098 }, "", { 6192.46, 16834, 0.00154114 } }, // Trader city 2
 			{ "Transport_E_EPOCH", { 13.5127, 0.410156, -10.3098 }, "", { 18451.9, 14278.1, 0.00143814 } } // Trader city 3
 	};
-	propsPos[] = {
+	traderPropsPos[] = {
 			//trader city #1
 			{"Land_MarketShelter_F", { 13315.3, 14512.4, 0.0361125 }, 119.966, true},
 			{ "Land_ScrapHeap_2_F", { 13315.9, 14499, 0.00584948 }, 255.706, true },
@@ -244,7 +244,9 @@ class Altis : Default
 			{ "Land_Tank_rust_F", { 18459.4, 14284.8, 0.00293159 }, 242.028, true },
 			{ "Land_CncBarrierMedium4_F", { 18464.2, 14281.7, 0.00330925 }, 62.7671, true },
 			{ "Land_LampShabby_F", { 18451.7, 14285.3, 0 }, 221.564, true },
-			{ "Land_HBarrier_1_F", { 18458.1, 14290.3, 0.0128841 }, 317.438, true },
+			{ "Land_HBarrier_1_F", { 18458.1, 14290.3, 0.0128841 }, 317.438, true }
+	};
+	propsPos[] = {
 			//Air Drop Event Helipad Start
 			{ "Land_dp_bigTank_F", { 14328.1, 13488.2, -0.64909101 }, 182, true }
 	};

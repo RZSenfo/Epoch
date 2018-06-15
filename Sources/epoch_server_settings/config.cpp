@@ -89,7 +89,9 @@ class CfgEpoch
 		};
 		debugBoxClass = "Debug_static_F";
 		cloneClasses[] = {"clone_empty_static_F", "clone_male_static_F", "clone_female_static_F"};
-		
+		disableTraderCities = 0;
+		enableRandomSpawn = 0;
+
 		// Settings for Events, Missions, etc
 		spawnDistanceFromPlayers = 500;
 		spawnDistanceFromJammers = 1000;

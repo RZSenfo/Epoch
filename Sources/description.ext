@@ -1,5 +1,104 @@
-// Epoch Survival Gamemode
-#include "epoch_config\sandbox_config.hpp"
+/*
+	Epoch Mod Survival Gamemode
+
+	Author: Epoch Mod Team - EpochMod.com
+
+    Licence:
+    Arma Public License Share Alike (APL-SA) - https://www.bistudio.com/community/licenses/arma-public-license-share-alike
+
+    Github:
+    https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_config/config.hpp
+*/
+author = "Epoch Mod Team";
+class Header
+{
+ gameType = Survive;
+ minPlayers = 1;
+ maxPlayers = 200;
+};
+respawn = "BASE";
+respawnDelay = 600;
+respawnDialog = 0;
+respawnButton = 0;
+respawnOnStart = -1;
+onPauseScript = "epoch_code\gui\scripts\Epoch_onPause.sqf";
+onLoadMission= "Epoch";
+OnLoadIntro = "Welcome to Epoch Mod";
+loadScreen = "\x\addons\a3_epoch_assets\pictures\loadScreen_ca.paa";
+OnLoadIntroTime = 0;
+OnLoadMissionTime = 0;
+onLoadName = "Epoch Mod";
+disabledAI = 1;
+scriptedPlayer = 1;
+disableChannels[]={{0,true,true},{1,false,true},{2,true,true},{6,true,true}}; // allow text only on side chat
+enableItemsDropping = 0;
+briefing = 0;
+debriefing = 0;
+//enableDebugConsole = 0;
+enableDebugConsole[] = { "76561198081729498" };
+joinUnassigned = 0;
+forceRotorLibSimulation = 1;
+saving = 0;
+
+corpseManagerMode = 1;
+corpseLimit = 10;
+corpseRemovalMinTime = 1200;
+corpseRemovalMaxTime = 3600;
+
+wreckManagerMode = 1;
+wreckLimit = 2;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 360;
+
+disableRandomization[] = {"All"};
+
+showHUD[] =
+{
+	true, 	// Scripted HUD (same as showHUD command)
+	true, 	// Vehicle + soldier info
+	true, 	// Vehicle radar
+	true, 	// Vehicle compass
+	true, 	// Tank direction indicator
+	false, 	// Commanding menu
+	false, 	// Group Bar
+	true, 	// HUD Weapon Cursors
+	true 	// Vehicle display panels
+};
+
+#include "epoch_config\Configs\CfgServicePoint.hpp"
+#include "epoch_config\Configs\CfgItemSort.hpp"
+#include "epoch_config\Configs\CfgTraderMissions.hpp"
+#include "epoch_config\Configs\CfgMissions.hpp"
+#include "epoch_config\Configs\CfgMissionsTasks.hpp"
+#include "epoch_config\Configs\cfgCrafting.hpp"
+#include "epoch_config\Configs\cfgPricing.hpp"
+#include "epoch_config\Configs\CfgDynamicHUD.hpp"
+
+#include "epoch_config\Configs\CfgEpochClient.hpp"
+
+#include "epoch_config\Configs\CfgMasterLoop.hpp"
+#include "epoch_config\Configs\CfgBaseBuilding.hpp"
+#include "epoch_config\Configs\CfgSnapChecks.hpp"
+#include "epoch_config\Configs\CfgBuildingLootPos.hpp"
+#include "epoch_config\Configs\CfgActionMenu\CfgActionMenu_core.hpp"
+#include "epoch_config\Configs\CfgEpochConfiguration.hpp"
+#include "epoch_config\Configs\CfgClientFunctions.hpp"
+#include "epoch_config\Configs\CfgObjectInteractions.hpp"
+#include "epoch_config\Configs\CfgItemInteractions.hpp"
+#include "epoch_config\Configs\CfgSay3Dhandler.hpp"
+#include "epoch_config\Configs\CfgSwitchMovehandler.hpp"
+#include "epoch_config\Configs\CfgVehicleUpgrades.hpp"
+#include "epoch_config\Configs\CfgReadingDocuments.hpp"
+#include "epoch_config\Configs\CfgMarkerSets.hpp"
+
+// A3 specific configs
+#include "epoch_config\Configs\CfgFunctions.hpp"
+#include "epoch_config\Configs\CfgRemoteExec.hpp"
+
+class CfgEpochBuild
+{
+ 	#include "epoch_config\build.hpp"
+};
 
 class MissionSQM {
     #include "mission.sqm"

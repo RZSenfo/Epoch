@@ -30,7 +30,8 @@ if (!_newChar || { !(["CfgEpochClient", "useCinematicSpawn", false] call EPOCH_f
 	uisleep 1; 
 	cutText ["", "BLACK IN", 0.1];  
 	_effect ppEffectAdjust [0];   
-	_effect ppEffectCommit 3; 
+	_effect ppEffectCommit 3;
+	player playMoveNow "amovppnemstpsraswrfldnon"; 
 	uisleep 3; 
 	ppEffectDestroy _effect; 
 	disableUserInput false;

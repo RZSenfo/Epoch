@@ -207,33 +207,48 @@ if (0 != _disableTraderCities && 0 == getNumber (_configWorld >> "enableRandomSp
 } else {
 
 	//random spawn
-	private _bestPlaces = [];
+	private _blacklist = getArray (_configWorld >> "randomSpawnBlacklist");
+	private _checkBlacklist = {
+		_good = true;
+		{
+			if ((_x select 0) distance2D _this < (_x select 1)) exitWith {
+				_good = false;
+			};
+		} forEach _blacklist;
+		_good
+	};
+	private _checkPositions = {
+		{
+			private _pos2d = _x select 0;
+			_pos2d params [["_xx", 0],["_yy",0]];
+			
+			//out of bounds
+			if (_xx > 0 && _xx < worldSize &&	_yy > 0 && _yy < worldSize) then {
+				_pos2d pushBack 0;
+
+				//inside blacklisted area
+				if (_pos2d call _checkBlacklist) then {
+					EPOCH_randomSpawnLocations pushBack _pos2d;
+				};
+			};
+		} forEach _this;
+	};
+	private EPOCH_randomSpawnLocations = [];
 	
 	//beaches with some houses but not too many
-	_bestPlaces append ("(sea - waterDepth) + (-((houses - 0.5) * (houses - 0.5)) + 0.5)" call _getBestPlaces);
-	
-	
-	if (count _bestPlaces < 30) then {
-		
-		_bestPlaces append ("sea - waterDepth" call _getBestPlaces);
+	("(sea - waterDepth) + (-((houses - 0.5) * (houses - 0.5)) + 0.5)" call _getBestPlaces) call _checkPositions;
 
+
+	if (count EPOCH_randomSpawnLocations < 30) then {
+		//add beaches not necessarily without/too many houses if not enough positions found	
+		("sea - waterDepth" call _getBestPlaces) call _checkPositions;
 	};
 
-	//check if we are not on an island or the island doesnt match our expectations
-	if (count _bestPlaces < 10 || { ((_bestPlaces select 0) select 1) < 0.5}) then {
-		_bestPlaces append ("meadow + trees + (-((houses - 0.1) * (houses - 0.1)) + 0.2)" call _getBestPlaces);
+	if (count EPOCH_randomSpawnLocations < 10 || { ((EPOCH_randomSpawnLocations select 0) select 1) < 0.5}) then {
+		//check if we are not on an island or the island doesnt match our expectations
+		("meadow + trees + (-((houses - 0.1) * (houses - 0.1)) + 0.2)" call _getBestPlaces) call _checkPositions;
 	};
 	
-
-	{
-		private _pos2d = _x select 0;
-		_pos2d params [["_xx", 0],["_yy",0]];
-		if (_xx > 0 && _xx < worldSize &&	_yy > 0 && _yy < worldSize) then {
-			_pos2d pushBack 0;
-			EPOCH_randomSpawnLocations pushBack _pos2d;
-		};
-	} forEach _bestPlaces;
-
 	if (count EPOCH_randomSpawnLocations < 5) then {
 		diag_log "Warning: Only a few spawn location detected!";
 		EPOCH_randomSpawnLocations pushBack [worldSize/2,worldSize/2,0]; //critical fallback

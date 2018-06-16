@@ -17,9 +17,11 @@
 private ["_bgCol","_c","_c1StartPos","_c1pos","_c2pos","_c3pos","_col","_config","_ctrl","_ctrlArr","_customCol","_dsp","_fade","_fnc_animFirst","_fnc_animShiftCtrl","_fontSize","_msg","_oldCtrl","_pos","_tick","_time","_txtCol","_uniqueID","_yPos","_ySize"];
 //[[[end]]]
 #include "\A3\ui_f\hpp\defineCommonGrids.inc"
+
 _msg = param [0, "No input"];
 _time = param [1, 2];
 _customCol = param[2,[]];
+
 private["_bgCol","_txtCol"];
 if(_customCol isEqualTo [])then{
 	_config = 'CfgEpochClient' call EPOCH_returnConfig;
@@ -29,7 +31,7 @@ if(_customCol isEqualTo [])then{
 	if !(_txtCol isEqualTypeAll 0)then{_txtCol = [1,1,1,0.95]};
 }else{
 	_bgCol = [_customCol select 0,[0,0,0,0.2]] select !((_customCol select 0)isEqualTypeAll 0);
-	_txtCol = [_customCol select 1,[1,1,1,0.95]] !((_customCol select 1)isEqualTypeAll 0);
+	_txtCol = [_customCol select 1,[1,1,1,0.95]] select !((_customCol select 1)isEqualTypeAll 0);
 };
 
 if !(_msg isEqualType "STRING") then { //Needed to remove quotations from strings

@@ -18,20 +18,16 @@ if (!isNull _cursorTarget && {!(EPOCH_target isEqualTo _cursorTarget)}) then {
 	_interaction = (_cfgObjectInteractions >> _interactType);
 	if (isClass(_interaction)) then {
 		_currentTargetMode = getNumber (_interaction >> "interactMode");
-		_allowTarget = switch (getNumber (_interaction >> "aliveState")) do {
-			case 1: {!(alive _cursorTarget)};
-			case 2: {(alive _cursorTarget)};
-			default {true};
-		};
+		_allowTarget = [true, !alive _cursorTarget, alive _cursorTarget] select getNumber (_interaction >> "aliveState");
 		if (_allowTarget) then {
 			_currentTarget = _cursorTarget;
 		};
 	} else {
 		// AllVehicles = vehicles=0, bases=1
-		if (_cursorTarget isKindOf "AllVehicles") then {
+		if (_interactType isKindOf ["AllVehicles", _cfgVehicles]) then {
 			_currentTarget = _cursorTarget;
 		} else {
-			if (_cursorTarget isKindOf "Constructions_modular_F" || _cursorTarget isKindOf "Constructions_static_F") then {
+			if (_interactType isKindOf ["Constructions_modular_F", _cfgVehicles] || _interactType isKindOf ["Constructions_static_F", _cfgVehicles]) then {
 				_currentTargetMode = 1;
 				_currentTarget = _cursorTarget;
 			};
@@ -225,9 +221,11 @@ call EPOCH_TradeLoop;
 
 // blank out unused hud elements and prepare for next loop
 _hudIndex = missionNamespace getVariable [format["EPOCH_dynHUD_%1","topRight"],1];
-for "_i" from _hudIndex to 9 do {
+_i = _hudIndex;
+while {_i <= 9} do {
     _c = ["topRight",_i] call epoch_getHUDCtrl;
     _c ctrlSetText "";
+	_i = _i + 1;
 };
 missionNamespace setVariable [format["EPOCH_dynHUD_%1","topRight"], nil];
 
@@ -381,7 +379,7 @@ if(_markerName in allMapMarkers)then{
 		}forEach _markerArray;
 	};
 };
-if(getNumber(('CfgEpochClient' call EPOCH_returnConfig) >> 'mapOnZoomSetMarkerSize') isEqualTo 1)then{
+if(EPOCH_mapOnZoomSetMarkerSize)then{
 	if(visibleMap)then{
 		_mapScale = ctrlMapScale ((findDisplay 12) displayCtrl 51);
 		_mapMarkers = allMapMarkers;
@@ -390,23 +388,20 @@ if(getNumber(('CfgEpochClient' call EPOCH_returnConfig) >> 'mapOnZoomSetMarkerSi
 		
 		if(_mapScale != EPOCH_lastMapScale)then{
 			EPOCH_lastMapScale = _mapScale;
-			for "_i" from 0 to ((count _mapMarkers) - 1) do {
+			_mapScaler = getArray(_config >> "mapScalerPresets");
+			_adj = 1.666;
+			{
+				if(_mapScale <= (_x select 0))then{_adj = (_x select 1)};
+			}forEach _mapScaler;
+			_min = (0.666/_mapScale) min 2.666;
+			{
 				if(_mapScale != EPOCH_lastMapScale)exitWith{};
-				_zoomMarker = _mapMarkers select _i;
-				private "_markerString";
-				_markerString = toArray _zoomMarker;
-				_markerString resize 6;
-				if (toString _markerString == "EPOCH_") then {
+				_zoomMarker = _x;
+				if (_zoomMarker find "EPOCH_" > -1) then {
 					_mSize = missionNamespace getVariable[_zoomMarker,[0.666,0.666]];	
-					_adj = 1.666;
-					_mapScaler = getArray(_config >> "mapScalerPresets");
-					{
-						if(_mapScale <= (_x select 0))then{_adj = (_x select 1)};
-					}forEach _mapScaler;
-					_min = (0.666/_mapScale) min 2.666;
 					_zoomMarker setMarkerSizeLocal [(((_mSize select 0) / (_mapScale * _adj)) min _min) max 0.666, (((_mSize select 1) / (_mapScale * _adj)) min _min) max 0.666];
 				};
-			};
+			} forEach _mapMarkers;
 		};
 	};
 };

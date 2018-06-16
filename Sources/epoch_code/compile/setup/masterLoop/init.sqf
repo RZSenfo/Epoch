@@ -205,6 +205,9 @@ _lootClassesIgnore = ['Default'];
 
 _lastPlayerPos = getPosATL player;
 _lootBubble = {
+
+	if (missionNamespace getVariable ["EPOCH_disableClientLoot",false]) exitWith {};
+
 	private["_jammer", "_others", "_objects", "_nearObjects", "_building", "_lootDist", "_lootLoc", "_playerPos", "_distanceTraveled"];
 	_playerPos = getPosATL vehicle player;
 	_distanceTraveled = _lastPlayerPos distance _playerPos;
@@ -344,3 +347,8 @@ _EPOCH_BuildTraderMisson = {
 _epoch_tradermissionarray = [];
 EPOCH_ActiveTraderMission = [];
 _LastMissionTrigger = 0;
+
+EPOCH_mapOnZoomSetMarkerSize = getNumber(('CfgEpochClient' call EPOCH_returnConfig) >> 'mapOnZoomSetMarkerSize') isEqualTo 1;
+EPOCH_outOfBoundsRadiation = (["CfgEpochClient", "outOfBoundsRadiation", 10] call EPOCH_fnc_returnConfigEntryV2);
+
+_cfgVehicles = configFile >> "CfgVehicles";

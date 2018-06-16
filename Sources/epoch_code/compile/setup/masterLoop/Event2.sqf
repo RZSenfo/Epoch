@@ -19,10 +19,8 @@ if (damage player != _damagePlayer) then {
 
 _energyValue = _chargeRate min _energyRegenMax;
 _vehicle = vehicle player;
-if (_vehicle != player && isEngineOn _vehicle) then {
-	if !(_vehicle iskindof "Bicycle") then {
-		_energyValue = _energyValue + _energyRegenInVeh;
-	};
+if (_vehicle != player && isEngineOn _vehicle && {!(typeOf _vehicle iskindof ["Bicycle",_cfgVehicles])}) then {
+	_energyValue = _energyValue + _energyRegenInVeh;
 };
 if (currentVisionMode player == 1) then { //NV enabled
 	_energyValue = _energyValue - _energyCostNV;
@@ -53,7 +51,7 @@ if (_playerRadiation > _radiationEffectsThreshold) then {
 
 // Geiger Deplete Energy
 if (EPOCH_geiger_shown) then {
-	_energyValue = _energyValue - (["CfgEpochClient", "outOfBoundsRadiation", 10] call EPOCH_fnc_returnConfigEntryV2);
+	_energyValue = _energyValue - EPOCH_outOfBoundsRadiation;
 };
 
 //  Energy Handler
@@ -63,21 +61,18 @@ if !(_playerEnergy isEqualTo _prevEnergy) then {
 	9993 cutRsc["EpochGameUI3", "PLAIN", 0, false];
 	_display3 = uiNamespace getVariable "EPOCH_EpochGameUI3";
 	_energyDiff = round(_playerEnergy - _prevEnergy);
-	_diffText = if (_energyDiff > 0) then {format["+%1",_energyDiff]} else {format["%1",_energyDiff]};
-	(_display3 displayCtrl 21210) ctrlSetText format["%1/%2 %3", round(_playerEnergy), _playerEnergyMax, _diffText];
+	(_display3 displayCtrl 21210) ctrlSetText format["%1/%2 %4%3", round(_playerEnergy), _playerEnergyMax, _energyDiff, ["","+"] select (_energyDiff > 0)];
 	_prevEnergy = _playerEnergy;
 };
 
-if (_playerEnergy == 0) then {
-	if (EPOCH_buildMode > 0) then {
-		EPOCH_buildMode = 0;
-		EPOCH_snapDirection = 0;
-		["Build Mode Disabled: Need Energy", 5] call Epoch_message;
-		EPOCH_Target = objNull;
-		EPOCH_Z_OFFSET = 0;
-		EPOCH_X_OFFSET = 0;
-		EPOCH_Y_OFFSET = 5;
-	};
+if (_playerEnergy == 0 && {EPOCH_buildMode > 0}) then {
+	EPOCH_buildMode = 0;
+	EPOCH_snapDirection = 0;
+	["Build Mode Disabled: Need Energy", 5] call Epoch_message;
+	EPOCH_Target = objNull;
+	EPOCH_Z_OFFSET = 0;
+	EPOCH_X_OFFSET = 0;
+	EPOCH_Y_OFFSET = 5;
 };
 
 _attackers = player nearEntities[["Snake_random_EPOCH", "GreatWhite_F", "Epoch_Cloak_F"], 30];

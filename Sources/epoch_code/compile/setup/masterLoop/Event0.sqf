@@ -10,7 +10,7 @@ if (EPOCH_IsAutoRunning) then {
 	};
 };
 
-if (animationstate player in ['aadjpknlmstpsraswpstddown','aadjpknlmstpsraswrflddown'] && cameraview == 'GUNNER' && (player weapondirection (currentweapon player)) select 2 < -0.88) then {
+if (animationstate player in ['aadjpknlmstpsraswpstddown','aadjpknlmstpsraswrflddown'] && {cameraview == 'GUNNER' && (player weapondirection (currentweapon player)) select 2 < -0.88}) then {
 	_fadedblack = true;
 	TitleText ['Stop BugUsing!','BLACK FADED'];
 }

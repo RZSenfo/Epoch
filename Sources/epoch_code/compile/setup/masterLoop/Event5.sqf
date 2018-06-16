@@ -115,11 +115,20 @@ if !(_powerSources isEqualTo[]) then {
 		if (_powerCap == 0) then {
 			_powerCap = 100;
 		};
-		_powerCap = switch _powerType do {
-			case 1: {if (sunOrMoon == 1) then {_powerCap * (1-overcast)} else {(_powerCap * (1 - overcast))/2}};
-			case 2: {_powerCap * windstr};
-			case 3: {_powerCap * (1 - ((player distance _x) / _energyRange))};
-			default {_powerCap};
+		_powerCap = _powerType call {
+			if(_this isEqualTo 1) exitWith {
+				if (sunOrMoon == 1) then {
+					_powerCap * (1-overcast)
+				} else {
+					(_powerCap * (1 - overcast))/2}
+			};
+			if (_this isEqualTo 2) exitWith {
+				_powerCap * windstr
+			};
+			if (_this isEqualTo 3) exitWith {
+				_powerCap * (1 - ((player distance _x) / _energyRange))
+			};
+			_powerCap
 		};
 		_totalCapacity = _totalCapacity + _powerCap;
 	} forEach _powerSources;

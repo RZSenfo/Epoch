@@ -111,10 +111,10 @@ switch _interactOption do {
 		};
 	};
 	case 1: {
-		_unifiedInteract; // Eat 1
+		call _unifiedInteract; // Eat 1
 	};
 	case 2: {
-		_unifiedInteract; //Drink 2
+		call _unifiedInteract; //Drink 2
 	};
 	case 3: { // Build 3
 		closeDialog 0;
@@ -261,16 +261,16 @@ switch _interactOption do {
 		};
 	};
 	case 6: {
-		_unifiedInteract; //Clean -25
+		call _unifiedInteract; //Clean -25
 	};
 	case 7: {
-		_unifiedInteract; //Warm + 1
+		call _unifiedInteract; //Warm + 1
 	};
 	case 8: {
-		_unifiedInteract; //Cold -1
+		call _unifiedInteract; //Cold -1
 	};
 	case 9: {
-		_unifiedInteract; //Energy 100
+		call _unifiedInteract; //Energy 100
 	};
 	case 10: { // Repair 10 - Lite
 		if !(player == vehicle player) exitwith {

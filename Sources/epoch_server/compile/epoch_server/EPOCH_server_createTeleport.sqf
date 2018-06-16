@@ -233,7 +233,6 @@ if (0 != _disableTraderCities && 0 == getNumber (_configWorld >> "enableRandomSp
 			};
 		} forEach _this;
 	};
-	private EPOCH_randomSpawnLocations = [];
 	
 	//beaches with some houses but not too many
 	("(sea - waterDepth) + (-((houses - 0.5) * (houses - 0.5)) + 0.5)" call _getBestPlaces) call _checkPositions;

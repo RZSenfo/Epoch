@@ -194,7 +194,7 @@ link99[] = {86,27};
 link100[] = {87,88};
 link101[] = {88,89};
 link102[] = {89,68};
-globals[] = {0.000000,0,0,0,0,640,480,1,258,6316128,1,-451.273773,617.351563,1718.649048,704.475952,942,894,1};
+globals[] = {0.000000,0,0,0,0,640,480,1,258,6316128,1,-600.914490,692.122253,1897.002930,669.853455,942,894,1};
 window[] = {2,-1,-1,-32000,-32000,845,1998,2982,78,3,960};
 *//*%FSM</HEAD>*/
 class FSM
@@ -244,7 +244,7 @@ class FSM
                         itemno = 1;
                         init = /*%FSM<STATEINIT""">*/"[] spawn EPOCH_masterLoop;" \n
                          "" \n
-                         "[] spawn EPOCH_playerSpawned;" \n
+                         "[_newChar] spawn EPOCH_playerSpawned;" \n
                          "" \n
                          "progressLoadingScreen 1.0;" \n
                          "endLoadingScreen;" \n

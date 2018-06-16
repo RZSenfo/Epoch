@@ -108,6 +108,9 @@ class CfgClientFunctions
 			class masterLoop {
 				customHeader = 1;
 			};
+			class playerSpawned {
+				customHeader = 1;
+			};
 			class clientInit {};
 			class clientRespawn {};
 			class clientRevive {

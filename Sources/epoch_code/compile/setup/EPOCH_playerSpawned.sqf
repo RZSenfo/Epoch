@@ -2,7 +2,7 @@
 params [["_newChar",false]];
 
 // fade in sound and screen
-if (!_newChar && { (["CfgEpochClient", "useCinematicSpawn", false] call EPOCH_fnc_returnConfigEntryV2) }) then {
+if (!_newChar || { !(["CfgEpochClient", "useCinematicSpawn", false] call EPOCH_fnc_returnConfigEntryV2) }) then {
 	3 fadeSound 1;
 	titleCut ["", "BLACK IN", 1];
 	1338 cutText ["","PLAIN",0]; 
